@@ -24,5 +24,15 @@ namespace Vending_Machine
         {
             InitializeComponent();
         }
+
+        private void coin_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void buttonProduct_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

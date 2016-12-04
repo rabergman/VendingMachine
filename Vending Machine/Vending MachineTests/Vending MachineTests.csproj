@@ -56,7 +56,7 @@
     <Compile Include="ChipsTests.cs" />
     <Compile Include="ColaTests.cs" />
     <Compile Include="DimeTests.cs" />
-    <Compile Include="NickleTests.cs" />
+    <Compile Include="NickelTests.cs" />
     <Compile Include="PennyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuarterTests.cs" />

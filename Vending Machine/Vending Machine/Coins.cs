@@ -40,9 +40,9 @@ namespace Vending_Machine
         }
     }
 
-    public class Nickle : Coin
+    public class Nickel : Coin
     {
-        public Nickle()
+        public Nickel()
         {
             this.Weight = 5.0M;
             this.Diameter = 21.21M;

@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vending_Machine"
         mc:Ignorable="d"
-        Title="Pillar Vending" Height="372" Width="584">
-    <Grid>
+        Title="Pillar Vending" Height="382" Width="534">
+    <Grid x:Name="MainGrid">
+        <Image x:Name="imageCola" HorizontalAlignment="Left" Height="96" Margin="50,15,0,0" VerticalAlignment="Top" Width="60" Source="Images/Coca-Cola.png"/>
+        <Image x:Name="imageChips" HorizontalAlignment="Left" Height="90" Margin="235,21,0,0" VerticalAlignment="Top" Width="60" Source="Images/lays-classic.png"/>
+        <Image x:Name="imageCandy" Height="90" Margin="0,21,46,0" VerticalAlignment="Top" Source="Images/twix.png" Stretch="UniformToFill" HorizontalAlignment="Right" Width="65"/>
+        <Button x:Name="buttonCola" Content="$1.00" HorizontalAlignment="Left" Margin="50,111,0,0" VerticalAlignment="Top" Width="60" BorderBrush="#FF9E9E9E" Click="buttonProduct_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFB8B8B8" Offset="0"/>
+                    <GradientStop Color="White" Offset="0.778"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="buttonChips" Content="50¢" HorizontalAlignment="Left" Margin="235,111,0,0" VerticalAlignment="Top" Width="60" BorderBrush="#FF9E9E9E" Click="buttonProduct_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFB8B8B8" Offset="0"/>
+                    <GradientStop Color="White" Offset="0.778"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="buttonCandy" Content="65¢" Margin="0,111,46,0" VerticalAlignment="Top" BorderBrush="#FF9E9E9E" HorizontalAlignment="Right" Width="60" Click="buttonProduct_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFB8B8B8" Offset="0"/>
+                    <GradientStop Color="White" Offset="0.778"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <TextBox x:Name="textBoxDisplay" Height="23" Margin="75,147,76,0" TextWrapping="Wrap" Text="INSERT COINS" VerticalAlignment="Top" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Image x:Name="imagePenny" Margin="25,0,0,17" Source="Images/Penny.png" Cursor="Hand" Stretch="UniformToFill" HorizontalAlignment="Left" Width="75" RenderTransformOrigin="1.067,1.056" MouseDown="coin_MouseDown" Height="72" VerticalAlignment="Bottom"/>
+        <Image x:Name="imageNickel" Margin="146,0,298,16" Source="Images/Nickel.png" Stretch="UniformToFill" Cursor="Hand" MouseDown="coin_MouseDown" Height="74" VerticalAlignment="Bottom"/>
+        <Image x:Name="imageDime" Margin="287,0,164,18" Source="Images/Dime.png" Stretch="UniformToFill" Cursor="Hand" MouseDown="coin_MouseDown" Height="70" VerticalAlignment="Bottom"/>
+        <Image x:Name="imageQuarter" Margin="0,0,25,10" Source="Images/Quarter.png" Cursor="Hand" Stretch="UniformToFill" HorizontalAlignment="Right" Width="87" MouseDown="coin_MouseDown" Height="86" VerticalAlignment="Bottom"/>
 
     </Grid>
 </Window>
