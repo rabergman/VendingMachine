@@ -8,7 +8,18 @@ namespace Vending_Machine
 {
     public class CustomerCoins
     {
-        public List<Coin> InsertedCoins { get; set; }
+        private List<Coin> InsertedCoins { get; set; }
+
+        public CustomerCoins()
+        {
+            InsertedCoins = new List<Coin>();
+        }
+
+        public decimal AddCoin(Coin coin)
+        {
+            InsertedCoins.Add(coin);
+            return Value();
+        }
 
         public decimal Value()
         {
@@ -18,6 +29,39 @@ namespace Vending_Machine
                 total += coin.Value;
 
             return total;
+        }
+
+        public int CoinCount()
+        {
+            return InsertedCoins.Count();
+        }
+
+        //This is primarily here for testing
+        public void CheckCoinCount(out int nickelCount,
+            out int dimeCount, out int quarterCount)
+        {
+            nickelCount = 0;
+            dimeCount = 0;
+            quarterCount = 0;
+
+            //Determine the number of each coin in inventory
+            foreach (var item in InsertedCoins)
+            {
+                if (item.GetType() == typeof(Nickel))
+                    nickelCount++;
+                else if (item.GetType() == typeof(Dime))
+                    dimeCount++;
+                else if (item.GetType() == typeof(Quarter))
+                    quarterCount++;
+            }
+        }
+
+
+        private bool ValidateCoin(Coin coin)
+        {
+            bool returnValue = false;
+
+            return returnValue;
         }
     }
 }

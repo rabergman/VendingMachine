@@ -36,7 +36,6 @@ namespace Vending_Machine
             CoinsInInventory = new List<Coin>();
 
             CoinsInserted = new CustomerCoins();
-            CoinsInserted.InsertedCoins = new List<Coin>();
 
             RefillProduct();
             RefillCoins();
@@ -162,6 +161,13 @@ namespace Vending_Machine
             }
 
             return returnValue;
+        }
+
+        public decimal InsertCoin(Coin coin)
+        {
+            //CoinsInserted.InsertedCoins.Add(coin);
+
+            return CoinsInserted.Value();
         }
     }
 }
