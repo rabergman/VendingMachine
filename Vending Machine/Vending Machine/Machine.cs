@@ -14,7 +14,7 @@ namespace Vending_Machine
         /// <summary>
         /// A list to keep track of the products in the machine
         /// </summary>
-        public List<Product> ProductInInventory { get; private set; }
+        public List<Product> ProductsInInventory { get; private set; }
 
         /// <summary>
         /// A list to keep track of the coins in the machine
@@ -27,6 +27,11 @@ namespace Vending_Machine
         /// </summary>
         public Machine()
         {
+            this.ProductsInInventory = new List<Product>();
+            this.CoinsInInventory = new List<Coin>();
+
+            RefillProduct();
+            RefillCoins();
         }
 
         public void RefillProduct()
@@ -36,7 +41,7 @@ namespace Vending_Machine
             int candyCount = 0;
 
             //Determine the number of each product to be added
-            foreach (var item in ProductInInventory)
+            foreach (var item in ProductsInInventory)
             {
                 if (item.GetType() == typeof(Chips))
                     chipCount++;
@@ -51,21 +56,21 @@ namespace Vending_Machine
                 if (chipCount < numProducts)
                 {
                     Chips chips = new Chips();
-                    ProductInInventory.Add(chips);
+                    ProductsInInventory.Add(chips);
                     chipCount++;
                 }
 
                 if (colaCount < numProducts)
                 {
                     Cola cola = new Cola();
-                    ProductInInventory.Add(cola);
+                    ProductsInInventory.Add(cola);
                     colaCount++;
                 }
 
                 if (candyCount < numProducts)
                 {
                     Candy candy = new Candy();
-                    ProductInInventory.Add(candy);
+                    ProductsInInventory.Add(candy);
                     candyCount++;
                 }
             }
@@ -108,9 +113,47 @@ namespace Vending_Machine
                 {
                     Quarter quarter = new Quarter();
                     CoinsInInventory.Add(quarter);
-                    dimeCount++;
+                    quarterCount++;
                 }
             }
+        }
+
+        /// <summary>
+        /// Removes either a coin or a product from their respective lists
+        /// </summary>
+        /// <typeparam name="T">The type of the item</typeparam>
+        /// <param name="item">The item to be removed</param>
+        /// <returns>True if successful, else false</returns>
+        public bool RemoveItem<T>(T item)
+        {
+            bool returnValue = false;
+
+            if (item.GetType().BaseType == typeof(Product))
+            {
+                foreach (var prod in ProductsInInventory)
+                {
+                    if (prod.GetType() == item.GetType())
+                    {
+                        ProductsInInventory.Remove(prod);
+                        returnValue = true;
+                        break;
+                    }
+                }
+            }
+            else if (item.GetType().BaseType == typeof(Coin))
+            {
+                foreach (var coin in CoinsInInventory)
+                {
+                    if (coin.GetType() == item.GetType())
+                    {
+                        CoinsInInventory.Remove(coin);
+                        returnValue = true;
+                        break;
+                    }
+                }
+            }
+
+            return returnValue;
         }
     }
 }

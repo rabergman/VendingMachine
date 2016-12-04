@@ -37,7 +37,7 @@ namespace Vending_Machine.Tests
             int candyCount = 0;
 
             //Determine the number of each product to be added
-            foreach (var item in machine.ProductInInventory)
+            foreach (var item in machine.ProductsInInventory)
             {
                 if (item.GetType() == typeof(Chips))
                     chipCount++;
@@ -58,6 +58,7 @@ namespace Vending_Machine.Tests
             Machine machine = new Machine();
 
             //TODO: Add code to empty coins so refill can be tested
+            RemoveCoins(machine);
 
             int nickelCount = 0;
             int dimeCount = 0;
@@ -77,6 +78,11 @@ namespace Vending_Machine.Tests
             Assert.AreEqual(numCoins, nickelCount);
             Assert.AreEqual(numCoins, dimeCount);
             Assert.AreEqual(numCoins, quarterCount);
+        }
+
+        private void RemoveCoins(Machine machine)
+        {
+            machine.RemoveItem<Coin>(new Nickel());
         }
     }
 }
