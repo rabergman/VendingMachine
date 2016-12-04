@@ -33,10 +33,10 @@ namespace Vending_Machine
     {
         public Penny()
         {
-            this.Weight = 2.5M;
-            this.Diameter = 19.05M;
-            this.Thickness = 1.55M;
-            this.Value = .01M;
+            Weight = 2.5M;
+            Diameter = 19.05M;
+            Thickness = 1.55M;
+            Value = .01M;
         }
     }
 
@@ -44,10 +44,10 @@ namespace Vending_Machine
     {
         public Nickel()
         {
-            this.Weight = 5.0M;
-            this.Diameter = 21.21M;
-            this.Thickness = 1.95M;
-            this.Value = .05M;
+            Weight = 5.0M;
+            Diameter = 21.21M;
+            Thickness = 1.95M;
+            Value = .05M;
         }
     }
 
@@ -55,10 +55,10 @@ namespace Vending_Machine
     {
         public Dime()
         {
-            this.Weight = 2.268M;
-            this.Diameter = 17.91M;
-            this.Thickness = 1.35M;
-            this.Value = .10M;
+            Weight = 2.268M;
+            Diameter = 17.91M;
+            Thickness = 1.35M;
+            Value = .10M;
         }
     }
 
@@ -66,10 +66,10 @@ namespace Vending_Machine
     {
         public Quarter()
         {
-            this.Weight = 5.67M;
-            this.Diameter = 24.26M;
-            this.Thickness = 1.75M;
-            this.Value = .25M;
+            Weight = 5.67M;
+            Diameter = 24.26M;
+            Thickness = 1.75M;
+            Value = .25M;
         }
     }
 }

@@ -63,6 +63,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Coins.cs" />
+    <Compile Include="CustomerCoins.cs" />
     <Compile Include="Machine.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -70,7 +71,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Product.cs" />
+    <Compile Include="Products.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

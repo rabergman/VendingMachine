@@ -6,10 +6,5 @@ namespace Vending_MachineTests
     [TestClass]
     public class AddCoinTests
     {
-        [TestMethod]
-        public void AddCoin()
-        {
-            Assert.Fail();
-        }
     }
 }

@@ -14,7 +14,7 @@ namespace Vending_Machine
         /// <summary>
         /// A list to keep track of the products in the machine
         /// </summary>
-        public List<Product> ProductsInInventory { get; private set; }
+        public List<Products> ProductsInInventory { get; private set; }
 
         /// <summary>
         /// A list to keep track of the coins in the machine
@@ -22,13 +22,21 @@ namespace Vending_Machine
         public List<Coin> CoinsInInventory { get; private set; }
 
         /// <summary>
+        /// A list to keep track of the coins inserted by the customer
+        /// </summary>
+        public CustomerCoins CoinsInserted { get; private set; }
+
+        /// <summary>
         /// When a new machine is created is filled with a set number
         /// of each product and a set number of each coin
         /// </summary>
         public Machine()
         {
-            this.ProductsInInventory = new List<Product>();
-            this.CoinsInInventory = new List<Coin>();
+            ProductsInInventory = new List<Products>();
+            CoinsInInventory = new List<Coin>();
+
+            CoinsInserted = new CustomerCoins();
+            CoinsInserted.InsertedCoins = new List<Coin>();
 
             RefillProduct();
             RefillCoins();
@@ -128,7 +136,7 @@ namespace Vending_Machine
         {
             bool returnValue = false;
 
-            if (item.GetType().BaseType == typeof(Product))
+            if (item.GetType().BaseType == typeof(Products))
             {
                 foreach (var prod in ProductsInInventory)
                 {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Vending_Machine
 {
-    public abstract class Product
+    public abstract class Products
     {
         /// <summary>
         /// The name of the product
@@ -16,30 +16,30 @@ namespace Vending_Machine
         public decimal Price { get; protected set; }
     }
 
-    public class Cola : Product
+    public class Cola : Products
     {
         public Cola()
         {
-            this.Name = "Cola";
-            this.Price = 1.00M;
+            Name = "Cola";
+            Price = 1.00M;
         }
     }
 
-    public class Chips : Product
+    public class Chips : Products
     {
         public Chips()
         {
-            this.Name = "Chips";
-            this.Price = .50M;
+            Name = "Chips";
+            Price = .50M;
         }
     }
 
-    public class Candy : Product
+    public class Candy : Products
     {
         public Candy()
         {
-            this.Name = "Candy";
-            this.Price = .65M;
+            Name = "Candy";
+            Price = .65M;
         }
     }
 }
