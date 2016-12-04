@@ -65,6 +65,7 @@
     <Compile Include="Coins.cs" />
     <Compile Include="CustomerCoins.cs" />
     <Compile Include="Machine.cs" />
+    <Compile Include="MachineCoins.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

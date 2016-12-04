@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Vending_Machine
 {
+    /// <summary>
+    /// Parent class of all products
+    /// </summary>
     public abstract class Products
     {
         /// <summary>
@@ -16,6 +19,9 @@ namespace Vending_Machine
         public decimal Price { get; protected set; }
     }
 
+    /// <summary>
+    /// The cola object
+    /// </summary>
     public class Cola : Products
     {
         public Cola()
@@ -25,6 +31,9 @@ namespace Vending_Machine
         }
     }
 
+    /// <summary>
+    /// The chips object
+    /// </summary>
     public class Chips : Products
     {
         public Chips()
@@ -34,6 +43,9 @@ namespace Vending_Machine
         }
     }
 
+    /// <summary>
+    /// The candy object
+    /// </summary>
     public class Candy : Products
     {
         public Candy()

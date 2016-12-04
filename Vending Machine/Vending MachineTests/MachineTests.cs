@@ -174,7 +174,7 @@ namespace Vending_Machine.Tests
 
             RemoveCoins(machine);
 
-            machine.RefillCoins();
+            machine.CoinsInInventory.RefillCoins();
 
             int nickelCount, dimeCount, quarterCount;
 
@@ -207,7 +207,7 @@ namespace Vending_Machine.Tests
             machine.InsertCoin(new Dime());
             machine.InsertCoin(new Quarter());
 
-            Assert.IsTrue(machine.RefundMoney());
+            machine.RefundMoney();
 
             Assert.AreEqual(0, machine.CoinsInserted.CoinCount());
             Assert.AreEqual(0, machine.CoinsInserted.Value());
@@ -216,7 +216,24 @@ namespace Vending_Machine.Tests
         [TestMethod()]
         public void MakeChangeTest()
         {
-            Assert.Fail();
+            Machine machine = new Machine();
+
+            Assert.AreEqual(.25M, machine.InsertCoin(new Quarter()));
+            Assert.AreEqual(.50M, machine.InsertCoin(new Quarter()));
+            Assert.AreEqual(.75M, machine.InsertCoin(new Quarter()));
+
+            Assert.IsTrue(machine.PurchaseItem(new Candy()));
+
+            Assert.AreEqual(0, machine.CoinsInserted.CoinCount());
+
+            int nickelCount, dimeCount, quarterCount;
+
+            CheckMachineCoinCount(machine, out nickelCount,
+                out dimeCount, out quarterCount);
+
+            Assert.AreEqual(numCoins, nickelCount);
+            Assert.AreEqual(numCoins - 1, dimeCount);
+            Assert.AreEqual(numCoins, quarterCount);
         }
 
         private void RemoveCoins(Machine machine)
@@ -262,7 +279,7 @@ namespace Vending_Machine.Tests
             quarterCount = 0;
 
             //Determine the number of each coin in inventory
-            foreach (var item in machine.CoinsInInventory)
+            foreach (var item in machine.CoinsInInventory.CoinsInMachine)
             {
                 if (item.GetType() == typeof(Nickel))
                     nickelCount++;

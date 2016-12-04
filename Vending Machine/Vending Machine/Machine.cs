@@ -9,7 +9,6 @@ namespace Vending_Machine
     public class Machine
     {
         const int numProducts = 2;
-        const int numCoins = 2;
 
         /// <summary>
         /// A list to keep track of the products in the machine
@@ -17,14 +16,19 @@ namespace Vending_Machine
         public List<Products> ProductsInInventory { get; private set; }
 
         /// <summary>
-        /// A list to keep track of the coins in the machine
+        /// An Object to keep track of the coins in the machine
         /// </summary>
-        public List<Coin> CoinsInInventory { get; private set; }
+        public MachineCoins CoinsInInventory { get; private set; }
 
         /// <summary>
-        /// A list to keep track of the coins inserted by the customer
+        /// An object to keep track of the coins inserted by the customer
         /// </summary>
         public CustomerCoins CoinsInserted { get; private set; }
+
+        /// <summary>
+        /// A string to hold the current display text
+        /// </summary>
+        public string DisplayText { get; set; }
 
         /// <summary>
         /// When a new machine is created is filled with a set number
@@ -33,12 +37,13 @@ namespace Vending_Machine
         public Machine()
         {
             ProductsInInventory = new List<Products>();
-            CoinsInInventory = new List<Coin>();
-
+            CoinsInInventory = new MachineCoins();
             CoinsInserted = new CustomerCoins();
 
             RefillProduct();
-            RefillCoins();
+            CoinsInInventory.RefillCoins();
+
+            SetDisplayText("INSERT COINS");
         }
 
         /// <summary>
@@ -87,51 +92,6 @@ namespace Vending_Machine
         }
 
         /// <summary>
-        /// Refills the machine with coins, up to the max number of coins
-        /// </summary>
-        public void RefillCoins()
-        {
-            int nickelCount = 0;
-            int dimeCount = 0;
-            int quarterCount = 0;
-
-            //Determine the number each coin to be added
-            foreach (var item in CoinsInInventory)
-            {
-                if (item.GetType() == typeof(Nickel))
-                    nickelCount++;
-                else if (item.GetType() == typeof(Dime))
-                    dimeCount++;
-                else if (item.GetType() == typeof(Quarter))
-                    quarterCount++;
-            }
-
-            for (int i = 0; i < numCoins; i++)
-            {
-                if (nickelCount < numCoins)
-                {
-                    Nickel nickel = new Nickel();
-                    CoinsInInventory.Add(nickel);
-                    nickelCount++;
-                }
-
-                if (dimeCount < numCoins)
-                {
-                    Dime dime = new Dime();
-                    CoinsInInventory.Add(dime);
-                    dimeCount++;
-                }
-
-                if (quarterCount < numCoins)
-                {
-                    Quarter quarter = new Quarter();
-                    CoinsInInventory.Add(quarter);
-                    quarterCount++;
-                }
-            }
-        }
-
-        /// <summary>
         /// Removes either a coin or a product from their respective lists
         /// </summary>
         /// <typeparam name="T">The type of the item</typeparam>
@@ -155,11 +115,11 @@ namespace Vending_Machine
             }
             else if (item.GetType().BaseType == typeof(Coin))
             {
-                foreach (var coin in CoinsInInventory)
+                foreach (var coin in CoinsInInventory.CoinsInMachine)
                 {
                     if (coin.GetType() == item.GetType())
                     {
-                        CoinsInInventory.Remove(coin);
+                        CoinsInInventory.CoinsInMachine.Remove(coin);
                         returnValue = true;
                         break;
                     }
@@ -179,6 +139,8 @@ namespace Vending_Machine
             if (coin.ValidCoin())
                 CoinsInserted.AddCoin(coin);
 
+            SetDisplayText(CoinsInserted.Value().ToString("C"));
+
             return CoinsInserted.Value();
         }
 
@@ -186,14 +148,84 @@ namespace Vending_Machine
         /// Refunds the customers money
         /// </summary>
         /// <returns>True if refund was successful, else false</returns>
-        public bool RefundMoney()
+        public void RefundMoney()
         {
-            bool returnValue = false;
+            CoinsInserted.RefundCoins();
+        }
 
-            if (CoinsInserted.RefundCoins() == 0)
-                returnValue = true;
+        /// <summary>
+        /// Removes the product from inventory and makes change
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        public bool PurchaseItem(Products product)
+        {
+            bool success = false;
 
-            return returnValue;
+            foreach (var item in ProductsInInventory)
+            {
+                if (item.GetType() == product.GetType() &&
+                    CoinsInserted.Value() >= item.Price)
+                {
+                    success = ProductsInInventory.Remove(item);
+                    MakeChange(product.Price);
+                    break;
+                }
+            }
+
+            if (success)
+                SetDisplayText("THANK YOU!");
+            else
+                SetDisplayText(product.Price.ToString("C"));
+
+            return success;
+        }
+
+        /// <summary>
+        /// Makes change for a customer
+        /// </summary>
+        /// <param name="purchasePrice">The price of the item purchased</param>
+        /// <returns>A list with the coins to be returned to the customer</returns>
+        public List<Coin> MakeChange(decimal purchasePrice)
+        {
+            List<Coin> moneyToReturn = new List<Coin>();
+
+            if (CoinsInserted.Value() >= purchasePrice)
+            {
+                decimal amountOver = CoinsInserted.Value() - purchasePrice;
+
+                CoinsInserted.MoveCoinsToBin();
+
+                Quarter quarter = new Quarter();
+                while (quarter.Value <= amountOver)
+                {
+                    CoinsInInventory.RefundCoin(quarter);
+                    amountOver = amountOver - quarter.Value;
+                    moneyToReturn.Add(quarter);
+                }
+
+                Dime dime = new Dime();
+                while (dime.Value <= amountOver)
+                {
+                    CoinsInInventory.RefundCoin(dime);
+                    amountOver = amountOver - dime.Value;
+                    moneyToReturn.Add(dime);
+                }
+
+                Nickel nickel = new Nickel();
+                while (nickel.Value <= amountOver)
+                {
+                    CoinsInInventory.RefundCoin(nickel);
+                    amountOver = amountOver - dime.Value;
+                    moneyToReturn.Add(nickel);
+                }
+            }
+            return moneyToReturn;
+        }
+
+        public void SetDisplayText(string text)
+        {
+            DisplayText = text;
         }
     }
 }

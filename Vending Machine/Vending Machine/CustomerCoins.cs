@@ -101,11 +101,20 @@ namespace Vending_Machine
             return returnValue;
         }
 
-        public decimal RefundCoins()
+        /// <summary>
+        /// Refund all the coins the customer inserted
+        /// </summary>
+        public void RefundCoins()
         {
             InsertedCoins.Clear();
+        }
 
-            return Value();
+        /// <summary>
+        /// Move all the customers coins to the bin
+        /// </summary>
+        public void MoveCoinsToBin()
+        {
+            InsertedCoins.Clear();
         }
     }
 }
