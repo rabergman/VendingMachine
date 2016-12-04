@@ -30,22 +30,101 @@ namespace Vending_Machine.Tests
         {
             Machine machine = new Machine();
 
-            machine.RemoveItem<Cola>(new Cola());
+            machine.RemoveItem(new Cola());
 
+            int chipCount, colaCount, candyCount;
 
-            Assert.Fail();
+            CheckProductCount(machine, out chipCount, out colaCount,
+                out candyCount);
+
+            Assert.AreEqual(numProducts, chipCount);
+            Assert.AreEqual(numProducts - 1, colaCount);
+            Assert.AreEqual(numProducts, candyCount);
         }
 
         [TestMethod]
         public void SelectChipsTest()
         {
-            Assert.Fail();
+            Machine machine = new Machine();
+
+            machine.RemoveItem(new Chips());
+
+            int chipCount, colaCount, candyCount;
+
+            CheckProductCount(machine, out chipCount, out colaCount,
+                out candyCount);
+
+            Assert.AreEqual(numProducts - 1, chipCount);
+            Assert.AreEqual(numProducts, colaCount);
+            Assert.AreEqual(numProducts, candyCount);
         }
 
         [TestMethod]
         public void SelectCandyTest()
         {
-            Assert.Fail();
+            Machine machine = new Machine();
+
+            machine.RemoveItem(new Candy());
+
+            int chipCount, colaCount, candyCount;
+
+            CheckProductCount(machine, out chipCount, out colaCount,
+                out candyCount);
+
+            Assert.AreEqual(numProducts, chipCount);
+            Assert.AreEqual(numProducts, colaCount);
+            Assert.AreEqual(numProducts - 1, candyCount);
+        }
+
+        [TestMethod]
+        public void DispenseNickelTest()
+        {
+            Machine machine = new Machine();
+
+            machine.RemoveItem(new Nickel());
+
+            int nickelCount, dimeCount, quarterCount;
+
+            CheckProductCount(machine, out nickelCount, out dimeCount,
+                out quarterCount);
+
+            Assert.AreEqual(numCoins - 1, nickelCount);
+            Assert.AreEqual(numCoins, dimeCount);
+            Assert.AreEqual(numCoins, quarterCount);
+        }
+
+        [TestMethod]
+        public void DispenseDimeTest()
+        {
+            Machine machine = new Machine();
+
+            machine.RemoveItem(new Dime());
+
+            int nickelCount, dimeCount, quarterCount;
+
+            CheckProductCount(machine, out nickelCount, out dimeCount,
+                out quarterCount);
+
+            Assert.AreEqual(numCoins, nickelCount);
+            Assert.AreEqual(numCoins - 1, dimeCount);
+            Assert.AreEqual(numCoins, quarterCount);
+        }
+
+        [TestMethod]
+        public void SelectQuarterTest()
+        {
+            Machine machine = new Machine();
+
+            machine.RemoveItem(new Quarter());
+
+            int nickelCount, dimeCount, quarterCount;
+
+            CheckProductCount(machine, out nickelCount, out dimeCount,
+                out quarterCount);
+
+            Assert.AreEqual(numCoins, nickelCount);
+            Assert.AreEqual(numCoins, dimeCount);
+            Assert.AreEqual(numCoins - 1, quarterCount);
         }
 
         [TestMethod()]
@@ -55,7 +134,16 @@ namespace Vending_Machine.Tests
 
             RemoveProduct(machine);
 
-            CheckProductCount(machine);
+            machine.RefillProduct();
+
+            int chipCount, colaCount, candyCount;
+
+            CheckProductCount(machine, out chipCount, out colaCount,
+                out candyCount);
+
+            Assert.AreEqual(numProducts, chipCount);
+            Assert.AreEqual(numProducts, colaCount);
+            Assert.AreEqual(numProducts, candyCount);
         }
 
         [TestMethod()]
@@ -67,7 +155,13 @@ namespace Vending_Machine.Tests
 
             machine.RefillCoins();
 
-            CheckCoinCount(machine);
+            int nickelCount, dimeCount, quarterCount;
+            CheckCoinCount(machine, out nickelCount, out dimeCount,
+                out quarterCount);
+
+            Assert.AreEqual(numCoins, nickelCount);
+            Assert.AreEqual(numCoins, dimeCount);
+            Assert.AreEqual(numCoins, quarterCount);
         }
 
         private void RemoveCoins(Machine machine)
@@ -86,9 +180,12 @@ namespace Vending_Machine.Tests
             machine.RemoveItem<Product>(new Candy());
         }
 
-        private void CheckProductCount(Machine machine)
+        private void CheckProductCount(Machine machine, out int chipCount,
+            out int colaCount, out int candyCount)
         {
-            int chipCount = 0, colaCount = 0, candyCount = 0;
+            chipCount = 0;
+            colaCount = 0;
+            candyCount = 0;
 
             //Determine the number of each product in inventory
             foreach (var item in machine.ProductsInInventory)
@@ -100,15 +197,14 @@ namespace Vending_Machine.Tests
                 else if (item.GetType() == typeof(Candy))
                     candyCount++;
             }
-
-            Assert.AreEqual(numProducts, chipCount);
-            Assert.AreEqual(numProducts, colaCount);
-            Assert.AreEqual(numProducts, candyCount);
         }
 
-        private void CheckCoinCount(Machine machine)
+        private void CheckCoinCount(Machine machine, out int nickelCount,
+            out int dimeCount, out int quarterCount)
         {
-            int nickelCount = 0, dimeCount = 0, quarterCount = 0;
+            nickelCount = 0;
+            dimeCount = 0;
+            quarterCount = 0;
 
             //Determine the number of each coin in inventory
             foreach (var item in machine.CoinsInInventory)
@@ -120,10 +216,6 @@ namespace Vending_Machine.Tests
                 else if (item.GetType() == typeof(Quarter))
                     quarterCount++;
             }
-
-            Assert.AreEqual(numCoins, nickelCount);
-            Assert.AreEqual(numCoins, dimeCount);
-            Assert.AreEqual(numCoins, quarterCount);
         }
     }
 }
