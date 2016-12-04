@@ -207,7 +207,7 @@ namespace Vending_Machine.Tests
             machine.InsertCoin(new Dime());
             machine.InsertCoin(new Quarter());
 
-            machine.RefundMoney();
+            Assert.IsTrue(machine.RefundMoney());
 
             Assert.AreEqual(0, machine.CoinsInserted.CoinCount());
             Assert.AreEqual(0, machine.CoinsInserted.Value());

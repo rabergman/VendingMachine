@@ -176,7 +176,8 @@ namespace Vending_Machine
         /// <returns>The value of the coins inserted</returns>
         public decimal InsertCoin(Coin coin)
         {
-            CoinsInserted.AddCoin(coin);
+            if (coin.ValidCoin())
+                CoinsInserted.AddCoin(coin);
 
             return CoinsInserted.Value();
         }
@@ -184,12 +185,13 @@ namespace Vending_Machine
         /// <summary>
         /// Refunds the customers money
         /// </summary>
-        /// <returns>True is refund was successful else false</returns>
+        /// <returns>True if refund was successful, else false</returns>
         public bool RefundMoney()
         {
             bool returnValue = false;
 
-
+            if (CoinsInserted.RefundCoins() == 0)
+                returnValue = true;
 
             return returnValue;
         }
