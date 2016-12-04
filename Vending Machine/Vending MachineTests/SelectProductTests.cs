@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Vending_Machine;
 
 namespace Vending_MachineTests
 {
@@ -9,6 +10,11 @@ namespace Vending_MachineTests
         [TestMethod]
         public void SelectColaTest()
         {
+            Machine machine = new Machine();
+
+            machine.RemoveItem<Cola>(new Cola());
+
+
             Assert.Fail();
         }
 
