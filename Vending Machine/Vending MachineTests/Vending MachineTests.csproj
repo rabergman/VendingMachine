@@ -56,6 +56,7 @@
     <Compile Include="ChipsTests.cs" />
     <Compile Include="ColaTests.cs" />
     <Compile Include="DimeTests.cs" />
+    <Compile Include="MachineTests.cs" />
     <Compile Include="NickelTests.cs" />
     <Compile Include="PennyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

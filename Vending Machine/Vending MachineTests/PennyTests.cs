@@ -20,6 +20,8 @@ namespace Vending_Machine.Tests
             penny = new Penny();
 
             Assert.IsNotNull(penny);
+            Assert.IsInstanceOfType(penny, typeof(Penny));
+
             Assert.AreEqual(2.5M, penny.Weight);
             Assert.AreEqual(19.05M, penny.Diameter);
             Assert.AreEqual(1.55M, penny.Thickness);

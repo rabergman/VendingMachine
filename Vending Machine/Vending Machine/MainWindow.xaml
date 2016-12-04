@@ -39,6 +39,14 @@
         <Image x:Name="imageNickel" Margin="146,0,298,16" Source="Images/Nickel.png" Stretch="UniformToFill" Cursor="Hand" MouseDown="coin_MouseDown" Height="74" VerticalAlignment="Bottom"/>
         <Image x:Name="imageDime" Margin="287,0,164,18" Source="Images/Dime.png" Stretch="UniformToFill" Cursor="Hand" MouseDown="coin_MouseDown" Height="70" VerticalAlignment="Bottom"/>
         <Image x:Name="imageQuarter" Margin="0,0,25,10" Source="Images/Quarter.png" Cursor="Hand" Stretch="UniformToFill" HorizontalAlignment="Right" Width="87" MouseDown="coin_MouseDown" Height="86" VerticalAlignment="Bottom"/>
+        <Button x:Name="buttonCola_Copy" Content="Return Coins" Margin="205,190,206,0" VerticalAlignment="Top" BorderBrush="#FF9E9E9E" Click="buttonProduct_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFB8B8B8" Offset="0"/>
+                    <GradientStop Color="White" Offset="0.778"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
 
     </Grid>
 </Window>

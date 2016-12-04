@@ -19,6 +19,7 @@ namespace Vending_Machine.Tests
 
             chips = new Chips();
             Assert.IsNotNull(chips);
+            Assert.IsInstanceOfType(chips, typeof(Chips));
 
             Assert.AreEqual("Chips", chips.Name);
             Assert.AreEqual(.50M, chips.Price);

@@ -20,6 +20,8 @@ namespace Vending_Machine.Tests
             dime = new Dime();
 
             Assert.IsNotNull(dime);
+            Assert.IsInstanceOfType(dime, typeof(Dime));
+
             Assert.AreEqual(2.268M, dime.Weight);
             Assert.AreEqual(17.91M, dime.Diameter);
             Assert.AreEqual(1.35M, dime.Thickness);

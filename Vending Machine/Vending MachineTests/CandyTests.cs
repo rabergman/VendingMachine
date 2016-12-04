@@ -19,6 +19,7 @@ namespace Vending_Machine.Tests
 
             candy = new Candy();
             Assert.IsNotNull(candy);
+            Assert.IsInstanceOfType(candy, typeof(Candy));
 
             Assert.AreEqual("Candy", candy.Name);
             Assert.AreEqual(.65M, candy.Price);

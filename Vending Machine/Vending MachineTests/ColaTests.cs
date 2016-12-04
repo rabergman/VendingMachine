@@ -19,6 +19,7 @@ namespace Vending_Machine.Tests
 
             cola = new Cola();
             Assert.IsNotNull(cola);
+            Assert.IsInstanceOfType(cola, typeof(Cola));
 
             Assert.AreEqual("Cola", cola.Name);
             Assert.AreEqual(1.00M, cola.Price);

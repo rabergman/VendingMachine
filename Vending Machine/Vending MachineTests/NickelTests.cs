@@ -20,6 +20,8 @@ namespace Vending_Machine.Tests
             nickel = new Nickel();
 
             Assert.IsNotNull(nickel);
+            Assert.IsInstanceOfType(nickel, typeof(Nickel));
+
             Assert.AreEqual(5.0M, nickel.Weight);
             Assert.AreEqual(21.21M, nickel.Diameter);
             Assert.AreEqual(1.95M, nickel.Thickness);
