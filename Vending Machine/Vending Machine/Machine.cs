@@ -41,6 +41,9 @@ namespace Vending_Machine
             RefillCoins();
         }
 
+        /// <summary>
+        /// Refill all products in the machine, up to the max number of products
+        /// </summary>
         public void RefillProduct()
         {
             int chipCount = 0;
@@ -83,6 +86,9 @@ namespace Vending_Machine
             }
         }
 
+        /// <summary>
+        /// Refills the machine with coins, up to the max number of coins
+        /// </summary>
         public void RefillCoins()
         {
             int nickelCount = 0;
@@ -163,11 +169,29 @@ namespace Vending_Machine
             return returnValue;
         }
 
+        /// <summary>
+        /// Accepts coins from customers
+        /// </summary>
+        /// <param name="coin">The coin inserted</param>
+        /// <returns>The value of the coins inserted</returns>
         public decimal InsertCoin(Coin coin)
         {
-            //CoinsInserted.InsertedCoins.Add(coin);
+            CoinsInserted.AddCoin(coin);
 
             return CoinsInserted.Value();
+        }
+
+        /// <summary>
+        /// Refunds the customers money
+        /// </summary>
+        /// <returns>True is refund was successful else false</returns>
+        public bool RefundMoney()
+        {
+            bool returnValue = false;
+
+
+
+            return returnValue;
         }
     }
 }

@@ -193,6 +193,9 @@ namespace Vending_Machine.Tests
 
             Assert.AreEqual(.05M, machine.InsertCoin(new Nickel()));
 
+            Assert.AreEqual(.15M, machine.InsertCoin(new Dime()));
+
+            Assert.AreEqual(.40M, machine.InsertCoin(new Quarter()));
         }
 
         [TestMethod()]
@@ -200,7 +203,14 @@ namespace Vending_Machine.Tests
         {
             Machine machine = new Machine();
 
-            Assert.Fail();
+            machine.InsertCoin(new Nickel());
+            machine.InsertCoin(new Dime());
+            machine.InsertCoin(new Quarter());
+
+            machine.RefundMoney();
+
+            Assert.AreEqual(0, machine.CoinsInserted.CoinCount());
+            Assert.AreEqual(0, machine.CoinsInserted.Value());
         }
 
         [TestMethod()]
