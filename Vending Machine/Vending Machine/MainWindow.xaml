@@ -35,10 +35,10 @@
             </Button.Background>
         </Button>
         <TextBox x:Name="textBoxDisplay" Height="23" Margin="75,147,76,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Image x:Name="imagePenny" Margin="25,0,0,17" Source="Images/Penny.png" Cursor="Hand" Stretch="UniformToFill" HorizontalAlignment="Left" Width="75" RenderTransformOrigin="1.067,1.056" MouseDown="coin_MouseDown" Height="72" VerticalAlignment="Bottom"/>
-        <Image x:Name="imageNickel" Margin="113,0,331,16" Source="Images/Nickel.png" Stretch="UniformToFill" Cursor="Hand" MouseDown="coin_MouseDown" Height="74" VerticalAlignment="Bottom"/>
-        <Image x:Name="imageDime" Margin="214,0,237,18" Source="Images/Dime.png" Stretch="UniformToFill" Cursor="Hand" MouseDown="coin_MouseDown" Height="70" VerticalAlignment="Bottom"/>
-        <Image x:Name="imageQuarter" Margin="0,0,126,10" Source="Images/Quarter.png" Cursor="Hand" Stretch="UniformToFill" HorizontalAlignment="Right" Width="87" MouseDown="coin_MouseDown" Height="86" VerticalAlignment="Bottom"/>
+        <Image x:Name="imagePenny" Margin="25,0,0,51" Source="Images/Penny.png" Cursor="Hand" Stretch="UniformToFill" HorizontalAlignment="Left" Width="75" RenderTransformOrigin="1.067,1.056" MouseDown="coin_MouseDown" Height="72" VerticalAlignment="Bottom"/>
+        <Image x:Name="imageNickel" Margin="113,0,331,50" Source="Images/Nickel.png" Stretch="UniformToFill" Cursor="Hand" MouseDown="coin_MouseDown" Height="74" VerticalAlignment="Bottom"/>
+        <Image x:Name="imageDime" Margin="214,0,237,52" Source="Images/Dime.png" Stretch="UniformToFill" Cursor="Hand" MouseDown="coin_MouseDown" Height="70" VerticalAlignment="Bottom"/>
+        <Image x:Name="imageQuarter" Margin="0,0,126,44" Source="Images/Quarter.png" Cursor="Hand" Stretch="UniformToFill" HorizontalAlignment="Right" Width="87" MouseDown="coin_MouseDown" Height="86" VerticalAlignment="Bottom"/>
         <Button x:Name="buttonReturn" Content="Return Coins" Margin="205,190,206,0" VerticalAlignment="Top" BorderBrush="#FF9E9E9E" Click="buttonReturn_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -47,7 +47,23 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Image x:Name="imageQuarter_Copy" Margin="0,0,10,10" Source="Images/slug.png" Cursor="Hand" Stretch="UniformToFill" HorizontalAlignment="Right" Width="87" MouseDown="coin_MouseDown" Height="86" VerticalAlignment="Bottom"/>
+        <Image x:Name="imageQuarter_Copy" Margin="0,0,10,44" Source="Images/slug.png" Cursor="Hand" Stretch="UniformToFill" HorizontalAlignment="Right" Width="87" MouseDown="coin_MouseDown" Height="86" VerticalAlignment="Bottom"/>
+        <Button x:Name="buttonReturn_Copy" Content="Refill Product" Margin="113,321,298,0" VerticalAlignment="Top" BorderBrush="#FF9E9E9E" Click="buttonReturn_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFB8B8B8" Offset="0"/>
+                    <GradientStop Color="White" Offset="0.778"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="buttonReturn_Copy1" Content="Refill Money" Margin="285,321,126,0" VerticalAlignment="Top" BorderBrush="#FF9E9E9E" Click="buttonReturn_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFB8B8B8" Offset="0"/>
+                    <GradientStop Color="White" Offset="0.778"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
 
     </Grid>
 </Window>

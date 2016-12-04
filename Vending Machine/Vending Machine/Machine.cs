@@ -22,6 +22,37 @@ namespace Vending_Machine
         public CustomerCoins CoinsInserted { get; private set; }
 
         /// <summary>
+        /// Determines if any of the products are sold out
+        /// </summary>
+        /// <returns>A list with the sold out items</returns>
+        public List<Products> FindSoldOutProducts()
+        {
+            List<Products> soldOuts = new List<Products>();
+
+            int colaCount = 0, chipsCount = 0, candyCount = 0;
+            foreach (var item in ProductsInInventory)
+            {
+                if (item.GetType() == typeof(Cola))
+                    colaCount++;
+                else if (item.GetType() == typeof(Chips))
+                    chipsCount++;
+                else if (item.GetType() == typeof(Candy))
+                    candyCount++;
+            }
+
+            if (colaCount == 0)
+                soldOuts.Add(new Cola());
+
+            if (chipsCount == 0)
+                soldOuts.Add(new Chips());
+
+            if (candyCount == 0)
+                soldOuts.Add(new Candy());
+
+            return soldOuts;
+        }
+
+        /// <summary>
         /// A string to hold the current display text
         /// </summary>
         public string DisplayText { get; set; }

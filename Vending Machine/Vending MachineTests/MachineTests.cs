@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace Vending_Machine.Tests
 {
@@ -228,6 +229,27 @@ namespace Vending_Machine.Tests
             Assert.AreEqual(numCoins, nickelCount);
             Assert.AreEqual(numCoins - 1, dimeCount);
             Assert.AreEqual(numCoins, quarterCount);
+        }
+
+        [TestMethod()]
+        public void FindSoldOutTest()
+        {
+            Machine machine = new Machine();
+
+            Assert.AreEqual(.25M, machine.InsertCoin(new Quarter()));
+            Assert.AreEqual(.50M, machine.InsertCoin(new Quarter()));
+
+            Assert.IsTrue(machine.PurchaseItem(new Chips()));
+            Assert.AreEqual(0, machine.CoinsInserted.CoinCount());
+
+            Assert.AreEqual(.25M, machine.InsertCoin(new Quarter()));
+            Assert.AreEqual(.50M, machine.InsertCoin(new Quarter()));
+
+            Assert.IsTrue(machine.PurchaseItem(new Chips()));
+            Assert.AreEqual(0, machine.CoinsInserted.CoinCount());
+
+            List<Products> soldOut = machine.FindSoldOutProducts();
+            Assert.AreEqual(1, soldOut.Count);
         }
 
         private void RemoveCoins(Machine machine)
