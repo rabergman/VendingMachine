@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace Vending_Machine
@@ -82,6 +71,9 @@ namespace Vending_Machine
             textBoxDisplay.Text = _machine.DisplayText;
         }
 
+        /// <summary>
+        /// Updates the UI
+        /// </summary>
         public static void ProcessUITasks()
         {
             DispatcherFrame frame = new DispatcherFrame();
@@ -93,10 +85,14 @@ namespace Vending_Machine
             Dispatcher.PushFrame(frame);
         }
 
+        /// <summary>
+        /// Generates a random slug
+        /// </summary>
+        /// <returns>A coin with invalid values</returns>
         private Coin GetRandomBadCoin()
         {
             Random rand = new Random();
-            int num = rand.Next(1, 3);
+            int num = rand.Next(1, 4);
 
             switch (num)
             {

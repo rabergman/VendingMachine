@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Vending_Machine
 {
@@ -223,6 +219,10 @@ namespace Vending_Machine
             return moneyToReturn;
         }
 
+        /// <summary>
+        /// Setup the text for the display
+        /// </summary>
+        /// <param name="text">The text to display</param>
         public void SetDisplayText(string text)
         {
             DisplayText = text;
