@@ -187,6 +187,18 @@ namespace Vending_Machine.Tests
             Assert.AreEqual(numCoins, quarterCount);
         }
 
+        [TestMethod()]
+        public void RefundMoneyTest()
+        {
+
+        }
+
+        [TestMethod()]
+        public void MakeChangeTest()
+        {
+
+        }
+
         private void RemoveCoins(Machine machine)
         {
             machine.RemoveItem<Coin>(new Nickel());
