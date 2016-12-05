@@ -1,6 +1,7 @@
 # VendingMachine
 
 * How to use the Vending Machine
+  * Vending Machine.exe runs the application
   * Click on the coin images to insert coins
   * Click on the price of a product to purchase it after inserting enough money
   * Click on the product dispensing box to retrieve your product
