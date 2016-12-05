@@ -21,6 +21,11 @@ namespace Vending_Machine
             textBoxDisplay.Text = _machine.DisplayText;
         }
 
+        /// <summary>
+        /// Select a coin to place into the machine
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void coin_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (sender == imagePenny)
@@ -37,6 +42,11 @@ namespace Vending_Machine
             textBoxDisplay.Text = _machine.DisplayText;
         }
 
+        /// <summary>
+        /// Select a product to purchase
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonProduct_Click(object sender, RoutedEventArgs e)
         {
             bool success = false;
@@ -44,14 +54,29 @@ namespace Vending_Machine
             if (sender == buttonCola)
             {
                 success = _machine.PurchaseItem(new Cola());
+                if (success)
+                {
+                    textBoxProductDispenser.Text = "Cola Dispensed";
+                    textBoxCoinDispenser.Text = _machine.CoinReturnText;
+                }
             }
             else if (sender == buttonChips)
             {
                 success = _machine.PurchaseItem(new Chips());
+                if (success)
+                {
+                    textBoxProductDispenser.Text = "Chips Dispensed";
+                    textBoxCoinDispenser.Text = _machine.CoinReturnText;
+                }
             }
             else if (sender == buttonCandy)
             {
                 success = _machine.PurchaseItem(new Candy());
+                if (success)
+                {
+                    textBoxProductDispenser.Text = "Candy Dispensed";
+                    textBoxCoinDispenser.Text = _machine.CoinReturnText;
+                }
             }
 
             textBoxDisplay.Text = _machine.DisplayText;
@@ -87,9 +112,16 @@ namespace Vending_Machine
             textBoxDisplay.Text = _machine.DisplayText;
         }
 
+        /// <summary>
+        /// Allow customer to request their money be returned
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonReturn_Click(object sender, RoutedEventArgs e)
         {
             _machine.CoinsInserted.RefundCoins();
+
+            textBoxCoinDispenser.Text = "Coins Refunded";
 
             _machine.SetDisplayText("INSERT COINS");
             textBoxDisplay.Text = _machine.DisplayText;
@@ -162,6 +194,26 @@ namespace Vending_Machine
             _machine.ExactChangeOnly = false;
             _machine.SetDisplayText("INSERT COINS");
             textBoxDisplay.Text = _machine.DisplayText;
+        }
+
+        /// <summary>
+        /// Clears the product dispenser when the customer retrieves their item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxProductDispenser_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            textBoxProductDispenser.Text = "";
+        }
+
+        /// <summary>
+        /// Clears the coin dispenser when the customer retrieves their item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxCoinDispenser_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            textBoxCoinDispenser.Text = "";
         }
     }
 }

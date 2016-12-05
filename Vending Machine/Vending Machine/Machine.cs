@@ -63,6 +63,11 @@ namespace Vending_Machine
         public string DisplayText { get; set; }
 
         /// <summary>
+        /// A string to hold the text regarding coins being returned
+        /// </summary>
+        public string CoinReturnText { get; set; }
+
+        /// <summary>
         /// When a new machine is created is filled with a set number
         /// of each product and a set number of each coin
         /// </summary>
@@ -209,7 +214,14 @@ namespace Vending_Machine
                     CoinsInserted.Value() >= item.Price)
                 {
                     success = ProductsInInventory.Remove(item);
-                    MakeChange(product.Price);
+
+                    int coinCount = MakeChange(product.Price).Count;
+
+                    if (coinCount > 0)
+                        CoinReturnText = string.Format("{0} Coins Returned", coinCount.ToString());
+                    else
+                        CoinReturnText = "";
+
                     break;
                 }
             }

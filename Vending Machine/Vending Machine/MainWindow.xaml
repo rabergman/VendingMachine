@@ -39,7 +39,7 @@
         <Image x:Name="imageNickel" Margin="113,0,331,53" Source="Images/Nickel.png" Stretch="UniformToFill" Cursor="Hand" MouseDown="coin_MouseDown" Height="74" VerticalAlignment="Bottom"/>
         <Image x:Name="imageDime" Margin="214,0,237,55" Source="Images/Dime.png" Stretch="UniformToFill" Cursor="Hand" MouseDown="coin_MouseDown" Height="70" VerticalAlignment="Bottom"/>
         <Image x:Name="imageQuarter" Margin="0,0,126,47" Source="Images/Quarter.png" Cursor="Hand" Stretch="UniformToFill" HorizontalAlignment="Right" Width="87" MouseDown="coin_MouseDown" Height="86" VerticalAlignment="Bottom"/>
-        <Button x:Name="buttonReturn" Content="Return Coins" Margin="205,190,206,0" VerticalAlignment="Top" BorderBrush="#FF9E9E9E" Click="buttonReturn_Click">
+        <Button x:Name="buttonReturn" Content="Return Coins" Margin="209,190,202,0" VerticalAlignment="Top" BorderBrush="#FF9E9E9E" Click="buttonReturn_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFB8B8B8" Offset="0"/>
@@ -48,7 +48,7 @@
             </Button.Background>
         </Button>
         <Image x:Name="imageQuarter_Copy" Margin="0,0,10,47" Source="Images/slug.png" Cursor="Hand" Stretch="UniformToFill" HorizontalAlignment="Right" Width="87" MouseDown="coin_MouseDown" Height="86" VerticalAlignment="Bottom"/>
-        <Button x:Name="buttonRefillProduct" Content="Refill Product" Margin="113,328,298,0" VerticalAlignment="Top" BorderBrush="#FF9E9E9E" Click="buttonRefillProduct_Click">
+        <Button x:Name="buttonRefillProduct" Content="Refill Product" Margin="120,328,291,0" VerticalAlignment="Top" BorderBrush="#FF9E9E9E" Click="buttonRefillProduct_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFB8B8B8" Offset="0"/>
@@ -56,7 +56,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="buttonRefillMoney" Content="Refill Money" Margin="285,328,126,0" VerticalAlignment="Top" BorderBrush="#FF9E9E9E" Click="buttonRefillMoney_Click">
+        <Button x:Name="buttonRefillMoney" Content="Refill Money" Margin="292,328,119,0" VerticalAlignment="Top" BorderBrush="#FF9E9E9E" Click="buttonRefillMoney_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFB8B8B8" Offset="0"/>
@@ -64,6 +64,8 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
+        <TextBox x:Name="textBoxProductDispenser" Height="23" Margin="20,188,333,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFC7C7C7" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Opacity="0.995" IsReadOnly="True" PreviewMouseDown="textBoxProductDispenser_PreviewMouseDown"/>
+        <TextBox x:Name="textBoxCoinDispenser" Height="23" Margin="341,188,12,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFC7C7C7" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewMouseDown="textBoxCoinDispenser_PreviewMouseDown" IsReadOnly="True"/>
 
     </Grid>
 </Window>
