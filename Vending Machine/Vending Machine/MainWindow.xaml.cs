@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace Vending_Machine
@@ -54,6 +56,28 @@ namespace Vending_Machine
 
             textBoxDisplay.Text = _machine.DisplayText;
 
+            List<Products> soldOuts = _machine.FindSoldOutProducts();
+            var uriSource = new Uri("Images/soldout.png", UriKind.Relative);
+
+            foreach (var item in soldOuts)
+            {
+                if (item.GetType() == typeof(Cola))
+                {
+                    buttonCola.IsEnabled = false;
+                    imageCola.Source = new BitmapImage(uriSource);
+                }
+                else if (item.GetType() == typeof(Chips))
+                {
+                    buttonChips.IsEnabled = false;
+                    imageChips.Source = new BitmapImage(uriSource);
+                }
+                else if (item.GetType() == typeof(Candy))
+                {
+                    buttonCandy.IsEnabled = false;
+                    imageCandy.Source = new BitmapImage(uriSource);
+                }
+            }
+
             ProcessUITasks();
             Thread.Sleep(1000);
 
@@ -103,6 +127,41 @@ namespace Vending_Machine
                 default:
                     return new Quarter(1.85M);
             }
+        }
+
+        /// <summary>
+        /// Refill the sold out products
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonRefillProduct_Click(object sender, RoutedEventArgs e)
+        {
+            _machine.RefillProduct();
+
+            buttonCola.IsEnabled = true;
+            var uriSource = new Uri("Images/Coca-Cola.png", UriKind.Relative);
+            imageCola.Source = new BitmapImage(uriSource);
+
+            buttonChips.IsEnabled = true;
+            uriSource = new Uri("Images/lays-classic.png", UriKind.Relative);
+            imageChips.Source = new BitmapImage(uriSource);
+
+            buttonCandy.IsEnabled = true;
+            uriSource = new Uri("Images/twix.png", UriKind.Relative);
+            imageCandy.Source = new BitmapImage(uriSource);
+        }
+
+        /// <summary>
+        /// Refill the money in the machine
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonRefillMoney_Click(object sender, RoutedEventArgs e)
+        {
+            _machine.CoinsInInventory.RefillCoins();
+            _machine.ExactChangeOnly = false;
+            _machine.SetDisplayText("INSERT COINS");
+            textBoxDisplay.Text = _machine.DisplayText;
         }
     }
 }

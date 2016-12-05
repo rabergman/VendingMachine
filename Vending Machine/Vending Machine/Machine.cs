@@ -22,6 +22,11 @@ namespace Vending_Machine
         public CustomerCoins CoinsInserted { get; private set; }
 
         /// <summary>
+        /// Used to determine if exact change only is required
+        /// </summary>
+        public bool ExactChangeOnly { get; set; }
+
+        /// <summary>
         /// Determines if any of the products are sold out
         /// </summary>
         /// <returns>A list with the sold out items</returns>
@@ -191,7 +196,16 @@ namespace Vending_Machine
 
             foreach (var item in ProductsInInventory)
             {
-                if (item.GetType() == product.GetType() &&
+                if (ExactChangeOnly)
+                {
+                    if (item.GetType() == product.GetType() &&
+                    CoinsInserted.Value() == item.Price)
+                    {
+                        success = ProductsInInventory.Remove(item);
+                        break;
+                    }
+                }
+                else if (item.GetType() == product.GetType() &&
                     CoinsInserted.Value() >= item.Price)
                 {
                     success = ProductsInInventory.Remove(item);
@@ -203,7 +217,12 @@ namespace Vending_Machine
             if (success)
                 SetDisplayText("THANK YOU!");
             else
-                SetDisplayText(product.Price.ToString("C"));
+            {
+                if (ExactChangeOnly)
+                    SetDisplayText("EXACT CHANGE ONLY");
+                else
+                    SetDisplayText(product.Price.ToString("C"));
+            }
 
             return success;
         }
@@ -247,6 +266,10 @@ namespace Vending_Machine
                     moneyToReturn.Add(nickel);
                 }
             }
+
+            if (CoinsInInventory.MissingCoins().Count > 0)
+                ExactChangeOnly = true;
+
             return moneyToReturn;
         }
 
@@ -256,7 +279,10 @@ namespace Vending_Machine
         /// <param name="text">The text to display</param>
         public void SetDisplayText(string text)
         {
-            DisplayText = text;
+            if (ExactChangeOnly && text == "INSERT COINS")
+                DisplayText = "EXACT CHANGE ONLY";
+            else
+                DisplayText = text;
         }
     }
 }

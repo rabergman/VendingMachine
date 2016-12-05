@@ -252,6 +252,32 @@ namespace Vending_Machine.Tests
             Assert.AreEqual(1, soldOut.Count);
         }
 
+        [TestMethod()]
+        public void DetermineExactChangeOnly()
+        {
+            Machine machine = new Machine();
+
+            Assert.AreEqual(.25M, machine.InsertCoin(new Quarter()));
+            Assert.AreEqual(.50M, machine.InsertCoin(new Quarter()));
+            Assert.AreEqual(.75M, machine.InsertCoin(new Quarter()));
+
+            Assert.IsTrue(machine.PurchaseItem(new Chips()));
+            Assert.AreEqual(0, machine.CoinsInserted.CoinCount());
+
+            Assert.AreEqual(0, machine.CoinsInInventory.MissingCoins().Count);
+
+            Assert.AreEqual(.25M, machine.InsertCoin(new Quarter()));
+            Assert.AreEqual(.50M, machine.InsertCoin(new Quarter()));
+            Assert.AreEqual(.75M, machine.InsertCoin(new Quarter()));
+
+            Assert.IsTrue(machine.PurchaseItem(new Chips()));
+            Assert.AreEqual(0, machine.CoinsInserted.CoinCount());
+
+            Assert.AreEqual(1, machine.CoinsInInventory.MissingCoins().Count);
+
+            machine.SetDisplayText("EXACT CHANGE ONLY");
+        }
+
         private void RemoveCoins(Machine machine)
         {
             machine.RemoveItem<Coin>(new Nickel());

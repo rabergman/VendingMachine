@@ -79,5 +79,37 @@ namespace Vending_Machine
                 }
             }
         }
+
+        /// <summary>
+        /// Gets a list of coins that are no longer in the machine
+        /// </summary>
+        /// <returns>A list of coins that need to be refilled</returns>
+        public List<Coin> MissingCoins()
+        {
+            List<Coin> missingCoins = new List<Coin>();
+
+            int nickelCount = 0, dimeCount = 0, quarterCount = 0;
+
+            foreach (var item in CoinsInMachine)
+            {
+                if (item.GetType() == typeof(Nickel))
+                    nickelCount++;
+                else if (item.GetType() == typeof(Dime))
+                    dimeCount++;
+                else if (item.GetType() == typeof(Quarter))
+                    quarterCount++;
+            }
+
+            if (nickelCount == 0)
+                missingCoins.Add(new Nickel());
+
+            if (dimeCount == 0)
+                missingCoins.Add(new Dime());
+
+            if (quarterCount == 0)
+                missingCoins.Add(new Quarter());
+
+            return missingCoins;
+        }
     }
 }
