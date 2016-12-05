@@ -18,3 +18,5 @@
   * Refilling products will ensure exactly 2 of each product are loaded into the machine (based on the constant)
   * Refelling the coins will ensure exactly 2 of each coin are loaded into the machine (based on the constant)
   
+* Requires
+  * .NET Framework 4.5
