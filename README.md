@@ -2,7 +2,9 @@
 
 * How to use the Vending Machine
   * Click on the coin images to insert coins
-  * Click on the price of a product to purchase it
+  * Click on the price of a product to purchase it after inserting enough money
+  * Click on the product dispensing box to retrieve your product
+  * Click on the coin dispensing box to retrieve your change or refund
 
 * Assumptions
   * Coins Inserted by the customer are not added to coins available to the machine to make change
